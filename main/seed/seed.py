@@ -5,9 +5,9 @@ import json
 import time
 
 class Seed:
-    def __init__(self,IP,PORT):
-        self.IP = IP
-        self.PORT = PORT
+    def __init__(self,host,port):
+        self.ip = host
+        self.port = port
         self.connections = []
         self.soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -40,7 +40,7 @@ class Seed:
 
 
     def listen(self):
-        self.soc.bind((self.IP, self.PORT))
+        self.soc.bind((self.ip, self.port))
         self.soc.listen()
         print("listening for peers...")
         
