@@ -7,12 +7,13 @@ class Peer:
         self.host = host
         self.port = port
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.connections = []
+        self.connected_to = []
+        self.connections_from = []
 
     def connect(self, peer_host, peer_port):
         connection = socket.create_connection((peer_host, peer_port))
 
-        self.connections.append(connection)
+        self.connected_to.append(connection)
         print(f"Connected to {peer_host}:{peer_port}\n")
 
     def listen(self):
@@ -22,14 +23,14 @@ class Peer:
         threading.Thread(target=self.send_heartbeat).start()
         while True:
             connection, address = self.socket.accept()
-            self.connections.append(connection)
+            self.connections_from.append(connection)
             print(f"Accepted connection from {address}\n")
             threading.Thread(target=self.handle_client, args=(connection, address)).start()
 
     def send_heartbeat(self):
         while True:
             # Send heartbeat to each connected peer
-            for connection in self.connections:
+            for connection in self.connections_from:
                 try:
                     m = "Heartbeat from " + str(self.port)
                     connection.sendall(m.encode())
