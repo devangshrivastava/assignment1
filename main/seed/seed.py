@@ -42,7 +42,7 @@ class Seed:
         self.soc.bind((self.IP, self.PORT))
         self.soc.listen()
         print("listening for peers...")
-
+        
         while True:
             
             connection, address = self.soc.accept()
@@ -56,6 +56,8 @@ class Seed:
         listen_thread = threading.Thread(target=self.listen)
         listen_thread.start()
     
+    def __del__(self):
+        self.soc.close()
     
     
 
