@@ -1,0 +1,5 @@
+[2024-02-16 01:08:20] Listening for connections on 0.0.0.0:8001
+[2024-02-16 01:08:22] Connected to 127.0.0.1:7000
+[2024-02-16 01:08:23] Accepted connection from ('127.0.0.1', 55530)
+
+[2024-02-16 01:08:30] Received data from ('127.0.0.1', 55530): Hello from given_node
