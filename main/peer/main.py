@@ -1,13 +1,14 @@
-from seeds.peer.peer import Peer
+from peer import Peer
 import signal
 import sys
 import time
+import random
 
 # Create signal handler function
 def signal_handler(sig, frame):
     print('Exiting...')
-    node1.close_connections()
-    node2.close_connections()
+    # node1.close_connections()
+    # node2.close_connections()
     sys.exit(0)
 
 # Register signal handler for SIGINT (Ctrl+C)
@@ -15,30 +16,38 @@ signal.signal(signal.SIGINT, signal_handler)
 
 # Create two peers
 try:
-    node1 = Peer("0.0.0.0", 8000)
-    node1.start()
 
-    node2 = Peer("0.0.0.0", 8001)
-    node2.start()
+    given_node = Peer("0.0.0.0", 7000)
+    given_node.start()
+    nodes = []
+    for port in range(8000, 8006):
+        node = Peer("0.0.0.0", port)
+        nodes.append(node)  
 
-    # Give some time for nodes to start listening
-    time.sleep(2)
-    node2.connect("127.0.0.1", 8000)
-    time.sleep(1)  # Allow connection to establish
-    node1.connect("127.0.0.1", 8001)
+    for node in nodes:
+        node.start()
+    time.sleep(2) # Give some time for nodes to start listening
+
+    selected_nodes = random.sample(nodes, 4)
+
+    for node in selected_nodes:
+        node.connect("127.0.0.1",given_node.port)
+        time.sleep(1)
+        given_node.connect("127.0.0.1",node.port)
+        time.sleep(1)
 
     input("Press Enter to send data...")
     while True:
         time.sleep(1)
         a = input("Enter node number: ")
         m = input("Enter message: ")
-        if a == "1":
-            node1.send_data(m)
-        elif a == "2":
-            node2.send_data(m)
-        else:
-            print("Invalid input")
-            break
+        # if a == "1":
+        #     node1.send_data(m)
+        # elif a == "2":
+        #     node2.send_data(m)
+        # else:
+        #     print("Invalid input")
+        #     break
         
         b = input("Do you want to continue? (yes/no): ")
         if b == "no":
@@ -49,9 +58,12 @@ try:
             print("Invalid input")
             break
         
-
-    node1.close_connections()
-    node2.close_connections()
+    
+    for node in nodes:
+        node.close_connections()
+    given_node.close_connections()
+    # node1.close_connections()
+    # node2.close_connections()
 
 
 
@@ -60,5 +72,5 @@ try:
 
 except KeyboardInterrupt:
     print('Interrupted by user. Closing connections...')
-    node1.close_connections()
-    node2.close_connections()
+    # node1.close_connections()
+    # node2.close_connections()

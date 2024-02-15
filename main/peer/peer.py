@@ -1,5 +1,6 @@
 import socket
 import threading
+import time
 
 class Peer:
     def __init__(self, host, port):
@@ -12,18 +13,30 @@ class Peer:
         connection = socket.create_connection((peer_host, peer_port))
 
         self.connections.append(connection)
-        print(f"Connected to {peer_host}:{peer_port}")
+        print(f"Connected to {peer_host}:{peer_port}\n")
 
     def listen(self):
         self.socket.bind((self.host, self.port))
         self.socket.listen(1)
         print(f"Listening for connections on {self.host}:{self.port}\n")
-
+        threading.Thread(target=self.send_heartbeat).start()
         while True:
             connection, address = self.socket.accept()
             self.connections.append(connection)
             print(f"Accepted connection from {address}\n")
             threading.Thread(target=self.handle_client, args=(connection, address)).start()
+
+    def send_heartbeat(self):
+        while True:
+            # Send heartbeat to each connected peer
+            for connection in self.connections:
+                try:
+                    m = "Heartbeat from " + str(self.port)
+                    connection.sendall(m.encode())
+                except socket.error as e:
+                    print(f"Failed to send heartbeat to {connection.getpeername()}. Error: {e}")
+                    self.connections.remove(connection)
+            time.sleep(13)  
 
     def send_data(self, data):
         for connection in self.connections:
@@ -39,7 +52,9 @@ class Peer:
                 data = connection.recv(1024)
                 if not data:
                     break
-                print(f"Received data from {address}: {data.decode()}")
+                data = data.decode()
+                if data.startswith("Heartbeat"): continue 
+                print(f"Received data from {address}: {data}")
             except socket.error:
                 break
 
