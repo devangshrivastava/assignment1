@@ -36,6 +36,9 @@ try:
         given_node.connect("127.0.0.1",node.port)
         time.sleep(1)
 
+    for conn in given_node.connected_to:
+        print(conn)
+
     input("Press Enter to send data...")
     while True:
         time.sleep(1)
