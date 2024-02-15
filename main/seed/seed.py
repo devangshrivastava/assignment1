@@ -1,4 +1,4 @@
-import config_file
+
 import socket
 import threading
 import json
@@ -39,7 +39,7 @@ class Seed:
 
 
     def listen(self):
-        self.soc.bind(self.IP, self.PORT)
+        self.soc.bind((self.IP, self.PORT))
         self.soc.listen()
         print("listening for peers...")
 
