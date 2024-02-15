@@ -2,6 +2,7 @@
 import socket
 import threading
 import json
+import time
 
 class Seed:
     def __init__(self,IP,PORT):
@@ -10,7 +11,7 @@ class Seed:
         self.connections = []
         self.soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-    def handle_client(self,conn,addr):
+    def handle_peer(self,conn):
         try:
             
             data_to_send = self.connections
@@ -49,7 +50,8 @@ class Seed:
             
             print(f"Accepted connection from {address}")
             
-            threading.Thread(target=self.handle_client, args=(connection, address)).start()
+            threading.Thread(target=self.handle_peer, args=(connection)).start().join()
+            time.sleep(1)
             self.connections.append(connection)
 
     def start(self):
