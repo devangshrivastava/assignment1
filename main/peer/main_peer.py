@@ -44,14 +44,6 @@ try:
         time.sleep(1)
         a = input("Enter node number: ")
         m = input("Enter message: ")
-        # if a == "1":
-        #     node1.send_data(m)
-        # elif a == "2":
-        #     node2.send_data(m)
-        # else:
-        #     print("Invalid input")
-        #     break
-        
         b = input("Do you want to continue? (yes/no): ")
         if b == "no":
             break
