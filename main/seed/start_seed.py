@@ -1,5 +1,5 @@
 from . import config_file
-from .seed import Seed
+from .devang_seed import Seed
 import time
 
 seed_info = config_file.seed_info

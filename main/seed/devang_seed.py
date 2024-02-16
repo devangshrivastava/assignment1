@@ -20,8 +20,8 @@ class Seed:
         while True:
             connection, address = self.socket.accept()
             self.connections.append(connection)
-            peer_address = connection.getpeername()
-            self.log(f"Accepted connection from {peer_address}")
+
+            self.log(f"Accepted connection from {address}")
             threading.Thread(target=self.handle_client, args=(connection, address)).start()
 
     def send_data(self, data):
@@ -49,7 +49,6 @@ class Seed:
     def handle_client(self, connection, address):
         self.log(f"Connection from {address} opened.")
         self.send_list(connection)
-        print(connection)
         while True:
             try:
                 data = connection.recv(1024)
@@ -60,10 +59,7 @@ class Seed:
                     host_port_str = data.split("-")[1]  
                     host, port = host_port_str.split(":") 
                     self.connected_peers.append([host, port])
-
-                
-
-                self.log(f"Received data from :{address}: {data}")
+                self.log(f"data from :{address}: {data}")
             except socket.error:
                 break
 

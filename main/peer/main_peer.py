@@ -33,6 +33,7 @@ try:
     node1.close_connections()
     # node2.close_connections()
     
+    
 
 except KeyboardInterrupt:
     print("Shutting down...")
