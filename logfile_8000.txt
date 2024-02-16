@@ -1,0 +1,11 @@
+[2024-02-16 17:36:43] Listening for connections on 127.0.0.1:8000
+[2024-02-16 17:36:45] Connected to 127.0.0.1:7000
+[2024-02-16 17:36:46] Accepted connection from ('127.0.0.1', 60863)
+[2024-02-16 17:36:46] Connection from ('127.0.0.1', 60863) opened.
+[2024-02-16 17:36:46] Received data from :('127.0.0.1', 60863): STORE-127.0.0.1:8001
+[2024-02-16 17:36:47] Accepted connection from ('127.0.0.1', 60865)
+[2024-02-16 17:36:47] Connection from ('127.0.0.1', 60865) opened.
+[2024-02-16 17:36:47] Received data from :('127.0.0.1', 60865): STORE-127.0.0.1:8002
+[2024-02-16 17:36:48] Accepted connection from ('127.0.0.1', 60868)
+[2024-02-16 17:36:48] Connection from ('127.0.0.1', 60868) opened.
+[2024-02-16 17:36:48] Received data from :('127.0.0.1', 60868): STORE-127.0.0.1:8003

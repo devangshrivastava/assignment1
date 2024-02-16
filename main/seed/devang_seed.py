@@ -1,9 +1,8 @@
 import socket
 import threading
 import datetime
-import time
 
-class Peer:
+class Seed:
     def __init__(self, host, port):
         self.host = host
         self.port = port
@@ -11,40 +10,7 @@ class Peer:
         self.peer_count = 0
         self.connections = []
         self.logfile = f"logfile_{self.port}.txt"
-        self.peers = []
-
-    def connect(self, peer_host, peer_port):
-        connection = socket.create_connection((peer_host, peer_port))
-        self.connections.append(connection)
-        self.log(f"Connected to {peer_host}:{peer_port}")
-        data = f"STORE-{self.host}:{self.port}"
-        connection.sendall(data.encode())
-        threading.Thread(target=self.listen_other, args=(connection,)).start()
-
-    def listen_other(self,connection):
-        while True:
-            try:
-                data = connection.recv(1024)
-                if not data:
-                    break
-                data = data.decode()
-                # print(data)
-                if data.startswith("PEERS-"):
-                    peer_strings = data.split("-")[1:]
-                    for peer_string in peer_strings:
-                        host, port = peer_string.split(",")
-                        self.peers.append((host, int(port)))
-
-                for peer in self.peers:
-                    self.connect(peer[0], peer[1])
-                time.sleep(1)
-                        
-            except socket.error:
-                break
-        self.log(f"Connection from closed.")
-        connection.close()
-
-
+        self.connected_peers = [["PEERS"]]
 
     def listen(self):
         self.socket.bind((self.host, self.port))
@@ -67,16 +33,36 @@ class Peer:
             except socket.error as e:
                 self.log(f"Failed to send data. Error: {e}")
                 self.connections.remove(connection)
+    
+    def send_list(self, connection):
+        data_list = self.connected_peers
+        encoded_data = "-".join(",".join(map(str, sublist)) for sublist in data_list)
+        try:
+            connection.sendall(encoded_data.encode())
+            peer_address = connection.getpeername()
+            self.log(f"Sent data list to {peer_address}: {data_list}")
+        except socket.error as e:
+            self.log(f"Failed to send data list. Error: {e}")
+            self.connections.remove(connection)
+
 
     def handle_client(self, connection, address):
         self.log(f"Connection from {address} opened.")
-
+        self.send_list(connection)
+        print(connection)
         while True:
             try:
                 data = connection.recv(1024)
                 if not data:
                     break
                 data = data.decode()
+                if data.startswith("STORE-"):
+                    host_port_str = data.split("-")[1]  
+                    host, port = host_port_str.split(":") 
+                    self.connected_peers.append([host, port])
+
+                
+
                 self.log(f"Received data from :{address}: {data}")
             except socket.error:
                 break
@@ -95,22 +81,4 @@ class Peer:
         with open(self.logfile, "a") as f:
             f.write(log_message)
 
-# Example usage:
-# if __name__ == "__main__":
-#     node1 = Peer("0.0.0.0", 8000)
-#     node1.start()
 
-#     node2 = Peer("0.0.0.0", 8001)
-#     node2.start()
-
-#     # Give some time for nodes to start listening
-#     import time
-#     time.sleep(2)
-
-#     node2.connect("127.0.0.1", 8000)
-#     time.sleep(1)  # Allow connection to establish
-
-#     node2.send_data("Hello from node2!")
-    
-#     node1.send_data("Hello from node1!")
-#     time.sleep(1)  # Allow time for data to be received

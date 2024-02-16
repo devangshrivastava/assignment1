@@ -51,6 +51,10 @@ class Peer:
             
         return self.connected_seed,peer_to_connect
     
+
+
+
+
     def listen(self):
         self.socket.bind((self.host, self.port))
         self.socket.listen()
@@ -83,11 +87,6 @@ class Peer:
         listen_thread.start()
 
     
-    #first start the seed in a terminal
-    #create a new terminal 
-        #run start for a peer 
-        #then connect to seed
-        #then the connet command 
 
 
 
