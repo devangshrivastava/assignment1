@@ -26,8 +26,11 @@ try:
     time.sleep(1)
     peer4.connect(seed1.host, seed1.port)
     time.sleep(1)
-    print(peer3.peers)
-    print("done")
+    
+    seed1.send_data("Hello")
+
+    
+
 
 
 except KeyboardInterrupt:

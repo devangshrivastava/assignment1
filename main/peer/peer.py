@@ -29,16 +29,14 @@ class Peer:
                     break
                 data = data.decode()
                 # print(data)
+                address = connection.getpeername()
+                self.log(f"Received data from :{address}: {data}")
                 if data.startswith("PEERS-"):
                     peer_strings = data.split("-")[1:]
                     for peer_string in peer_strings:
                         host, port = peer_string.split(",")
                         self.peers.append((host, int(port)))
 
-                for peer in self.peers:
-                    self.connect(peer[0], peer[1])
-                time.sleep(1)
-                        
             except socket.error:
                 break
         self.log(f"Connection from closed.")
