@@ -36,8 +36,6 @@ try:
 
     for conn in given_node.connected_to:
         print(conn)
-    
-    given_node.send_data("Hello from given_node")
 
     input("Press Enter to send data...")
     # while True:
@@ -57,7 +55,6 @@ try:
     for node in nodes:
         node.close_connections()
     given_node.close_connections()
-   
     # node1.close_connections()
     # node2.close_connections()
 

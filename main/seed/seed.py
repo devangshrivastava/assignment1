@@ -18,7 +18,11 @@ class Seed:
             
             lock.acquire()
             data_to_send = self.connections
+
+            # Serialize the list to JSON
             json_data = json.dumps(data_to_send)
+
+            # Send the JSON data
             conn.sendall(json_data.encode())
 
             self.connections.append(list(conn,data))# increasing the connection list 
