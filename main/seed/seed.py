@@ -55,7 +55,7 @@ class Seed:
             connection.sendall("yes".encode())
 
              
-            data = conn.recv(1024).decode()
+            data = connection.recv(1024).decode()
             data = data.split("-")
             
             threading.Thread(target=self.handle_peer, args=(connection,data)).start() 
