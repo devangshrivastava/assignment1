@@ -1,16 +1,8 @@
-[2024-02-16 18:49:33] Listening for connections on 127.0.0.1:8001
-[2024-02-16 18:49:36] Connected to 127.0.0.1:7000
-[2024-02-16 18:49:36] Received data from :('127.0.0.1', 7000): PEERS-127.0.0.1,8000
-[2024-02-16 18:49:36] Connected to 127.0.0.1:8000
-[2024-02-16 18:49:37] Accepted connection from ('127.0.0.1', 61748)
-[2024-02-16 18:49:37] Connection from ('127.0.0.1', 61748) opened.
-[2024-02-16 18:49:37] Received data from :('127.0.0.1', 61748): STORE-127.0.0.1:8002
-[2024-02-16 18:49:38] Accepted connection from ('127.0.0.1', 61752)
-[2024-02-16 18:49:38] Connection from ('127.0.0.1', 61752) opened.
-[2024-02-16 18:49:38] Received data from :('127.0.0.1', 61752): STORE-127.0.0.1:8003
-[2024-02-16 18:49:39] Received data from :('127.0.0.1', 7000): Hello
-[2024-02-16 18:49:39] Connected to 127.0.0.1:8000
-[2024-02-16 18:50:24] Listening for connections on 127.0.0.1:8001
-[2024-02-16 18:50:27] Connected to 127.0.0.1:7000
-[2024-02-16 18:50:27] Received data from :('127.0.0.1', 7000): PEERS-127.0.0.1,8000
-[2024-02-16 18:50:31] Received data from :('127.0.0.1', 7000): Hello
+[2024-02-16 21:40:40] Listening for connections on 127.0.0.1:8001
+[2024-02-16 21:40:43] Connected to 127.0.0.1:7000
+[2024-02-16 21:40:43] Received data from :('127.0.0.1', 7000): PEERS-127.0.0.1,8000
+[2024-02-16 21:40:46] Accepted connection from ('127.0.0.1', 62726)
+[2024-02-16 21:40:46] Connection from ('127.0.0.1', 62726) opened.
+[2024-02-16 21:40:46] data from :('127.0.0.1', 62726): STORE-127.0.0.1:8003
+[2024-02-16 21:40:46] Received data from :('127.0.0.1', 7000): Hello
+[2024-02-16 21:40:48] data from :('127.0.0.1', 62726): MESSAGE Hello

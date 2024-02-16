@@ -49,7 +49,6 @@ class Seed:
     def handle_client(self, connection, address):
         self.log(f"Connection from {address} opened.")
         self.send_list(connection)
-        print(connection)
         while True:
             try:
                 data = connection.recv(1024)

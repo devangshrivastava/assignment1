@@ -3,6 +3,18 @@ import threading
 import datetime
 import time
 
+import hashlib
+
+
+class Message:
+    def __init__(self,message):
+        self.message = message
+        self.hash = hashlib.sha256(message.encode()).hexdigest()
+        self.received_from = []
+        self.sent_to = []
+
+
+
 class Peer:
     def __init__(self, host, port):
         self.host = host
@@ -12,6 +24,7 @@ class Peer:
         self.connections = []
         self.logfile = f"logfile_{self.port}.txt"
         self.peers = []
+        self.messages = []
 
     def connect(self, peer_host, peer_port):
         connection = socket.create_connection((peer_host, peer_port))
@@ -21,6 +34,13 @@ class Peer:
         connection.sendall(data.encode())
         threading.Thread(target=self.listen_other, args=(connection,)).start()
 
+    def message_check(self,message):
+        hash = hashlib.sha256(message.encode()).hexdigest()
+        for msg in self.messages:
+            if msg.hash == hash:
+                return False
+        return True
+
     def listen_other(self,connection):
         while True:
             try:
@@ -28,7 +48,6 @@ class Peer:
                 if not data:
                     break
                 data = data.decode()
-                # print(data)
                 address = connection.getpeername()
                 self.log(f"Received data from :{address}: {data}")
                 if data.startswith("PEERS-"):
@@ -36,6 +55,17 @@ class Peer:
                     for peer_string in peer_strings:
                         host, port = peer_string.split(",")
                         self.peers.append((host, int(port)))
+                
+                if data.startswith("MESSAGE"):
+                    b = self.message_check(data)
+                    if b:
+                        self.send_data(data)
+                        time.sleep(1)
+                        msg = Message(data)
+                        self.messages.append(msg)
+                
+
+                    
 
             except socket.error:
                 break
@@ -66,16 +96,17 @@ class Peer:
                 self.log(f"Failed to send data. Error: {e}")
                 self.connections.remove(connection)
 
+
+    #shayad kuch nhi karta ye ab
     def handle_client(self, connection, address):
         self.log(f"Connection from {address} opened.")
-
         while True:
             try:
                 data = connection.recv(1024)
                 if not data:
                     break
                 data = data.decode()
-                self.log(f"Received data from :{address}: {data}")
+                self.log(f"data from :{address}: {data}")
             except socket.error:
                 break
 
