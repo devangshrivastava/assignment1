@@ -2,6 +2,7 @@ import socket
 import threading
 import time
 import os
+import random
 
 class Peer:
     def __init__(self, host, port):
@@ -18,14 +19,22 @@ class Peer:
         with open(self.log_file, "a") as file:
             file.write(f"[{timestamp}] {activity}\n")
 
-    def connect(self, peer_host, peer_port):
+    def connect(self, peer_list):
+        peer_list = random.sample(peer_list, 4)
         activity = ""
-        if(len(self.connected_to) < 5):    
-            connection = socket.create_connection((peer_host, peer_port))
-            self.connected_to.append(connection)
-            activity = f"Connected to {peer_host}:{peer_port}"
-        else: 
-            activity = "Max connections reached"
+        for i in peer_list:
+            try:
+                if(len(self.connected_to) < 5):    
+                    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)   
+                    s.connect((i.host,i.port))
+                    self.connected_to.append(s)
+                    # activity = f"Connected to {i[0]}:{i[1]}"
+                else: 
+                    activity = "Max connections reached"
+                self.log_activity(activity)
+            except Exception as e:
+                activity = f"Error encountered: {e}"
+                self.log_activity(activity)
 
         # print(activity)
         self.log_activity(activity)
@@ -41,7 +50,7 @@ class Peer:
 
     def listen(self):
         self.socket.bind((self.host, self.port))
-        self.socket.listen(1)
+        self.socket.listen()
         activity = f"Listening for connections on {self.host}:{self.port}"
         # print(activity)
         self.log_activity(activity)
@@ -66,7 +75,7 @@ class Peer:
             time.sleep(5)  
 
     def send_data(self, data):
-        for connection in self.connected_to:
+        for connection in self.connected_from:
             try:
                 connection.sendall(data.encode())
                 activity = f"Sent data to {connection.getpeername()}: {data}"
@@ -88,6 +97,7 @@ class Peer:
                 # print(activity)
                 self.log_activity(activity)
             except socket.error:
+                
                 break
 
         activity = f"Connection from {address} closed."

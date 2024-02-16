@@ -29,13 +29,10 @@ try:
         node.start()
     time.sleep(2) # Give some time for nodes to start listening
 
-    selected_nodes = random.sample(nodes, 4)
+    
 
-    for node in selected_nodes:
-        node.connect("127.0.0.1",given_node.port)
-        time.sleep(1)
-        given_node.connect("127.0.0.1",node.port)
-        time.sleep(1)
+    # Connect to seed
+    given_node.connect(nodes)
 
     for conn in given_node.connected_to:
         print(conn)
@@ -43,18 +40,18 @@ try:
     given_node.send_data("Hello from given_node")
 
     input("Press Enter to send data...")
-    while True:
-        time.sleep(1)
-        a = input("Enter node number: ")
-        m = input("Enter message: ")
-        b = input("Do you want to continue? (yes/no): ")
-        if b == "no":
-            break
-        elif b == "yes":
-            continue
-        else:
-            print("Invalid input")
-            break
+    # while True:
+    #     time.sleep(1)
+    #     a = input("Enter node number: ")
+    #     m = input("Enter message: ")
+    #     b = input("Do you want to continue? (yes/no): ")
+    #     if b == "no":
+    #         break
+    #     elif b == "yes":
+    #         continue
+    #     else:
+    #         print("Invalid input")
+    #         break
         
     
     for node in nodes:
