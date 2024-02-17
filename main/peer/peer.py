@@ -27,6 +27,7 @@ class Peer:
         self.peers = set()
         self.messages = []
 
+
     def connect(self, peer_host, peer_port):
         connection = socket.create_connection((peer_host, peer_port))
         self.connected.append([peer_port, peer_host, connection])
@@ -34,7 +35,9 @@ class Peer:
         data = f"STORE-{self.host}:{self.port}"
         connection.sendall(data.encode())
         threading.Thread(target=self.listen_other, args=(connection,)).start()
-    
+
+
+
     def connect_seed(self, peer_host, peer_port):
         connection = socket.create_connection((peer_host, peer_port))
         self.seed.append(connection)
@@ -53,14 +56,17 @@ class Peer:
     def heartbeat(self,connection):
         counter = 0
         port = 123456
+
+
         for conn in self.connected:
             if(conn[2] == connection):
                 port = conn[0]
                 break
-        while True and counter < 3:
+        while port != 0 and counter < 3:
+            self.log(f"Sending heartbeat to {port}")
+            time.sleep(13)
             try:
-                self.log(f"Sending heartbeat to {connection.getpeername()}")
-                time.sleep(13)
+                counter = 0
                 data = "HEARTBEAT"
                 connection.sendall(data.encode())
                 
@@ -68,6 +74,12 @@ class Peer:
                 counter += 1
         self.log(f"Connection from {port} closed.")  
         connection.close()
+
+
+
+
+
+
 
     def listen_other(self,connection):
         threading.Thread(target=self.heartbeat, args=(connection,)).start()
@@ -113,8 +125,7 @@ class Peer:
                 break
         # if(port != 123456):
             # self.connected.remove([port, connection.getpeername()[0], connection])
-        self.log(f"Connection from {port} closed.")
-
+        self.log(f"listening to  {port} closed.")
         connection.close()
 
     def listen(self):
@@ -133,8 +144,8 @@ class Peer:
             threading.Thread(target=self.handle_client, args=(connection, address)).start()
 
     def send_data(self, data):
+        msg = None
         if(data.startswith("MESSAGE")):
-            msg = None
             for m in self.messages:
                 if m.message == data:
                     msg = m
@@ -153,7 +164,6 @@ class Peer:
                 self.log(f"Failed to send data. Error: {e}")
                 self.connected.remove(conn)
     
-
     def handle_client(self, connection, address):
         threading.Thread(target=self.heartbeat, args=(connection,)).start()
         self.log(f"Connection from {address} opened.")
@@ -192,7 +202,7 @@ class Peer:
             except socket.error:
                 break
 
-        self.log(f"Connection from {address} closed.")
+        self.log(f"Task over {address} closed.")
         # self.connections.remove(connection)
         connection.close()
 
