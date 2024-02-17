@@ -21,8 +21,7 @@ class Peer:
         self.port = port
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.seed = []
-        #self.connections = []
-        self.inital_peer_count = 0
+        self.connections = []
         self.connected = [] #port, host, socket
         self.logfile = f"logfile_{self.port}.txt"
         self.peers = set()
@@ -60,21 +59,19 @@ class Peer:
     def heartbeat(self,connection):
         counter = 0
         port = 123456
-        addr = "123456"
 
         for conn in self.connected:
             if(conn[2] == connection):
                 addr = conn[1]
                 port = conn[0]
                 break
-        
-        while port != 123456 and counter < 3:
+        while counter < 3:
             self.log(f"Sending heartbeat to {port}")
             time.sleep(13)
             try:
-                counter = 0
                 data = "HEARTBEAT"
                 connection.sendall(data.encode())
+                counter = 0
                 
             except Exception as e:
                 counter += 1
