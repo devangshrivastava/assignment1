@@ -30,18 +30,21 @@ class Peer:
 
 
     def connect(self, peer_host, peer_port):
-        connection = socket.create_connection((peer_host, peer_port))
-        self.connected.append([peer_port, peer_host, connection])
-        self.log(f"Connected to {peer_host}:{peer_port}")
-        data = f"STORE-{self.host}:{self.port}"
-        connection.sendall(data.encode())
-        threading.Thread(target=self.listen_other, args=(connection,)).start()
+        if self.inital_peer_count < 4:
+            connection = socket.create_connection((peer_host, peer_port))
+            self.connected.append([peer_port, peer_host, connection])
+            self.inital_peer_count+=1
+            self.log(f"Connected to {peer_host}:{peer_port}")
+            data = f"STORE-{self.host}:{self.port}"
+            connection.sendall(data.encode())
+            threading.Thread(target=self.listen_other, args=(connection,)).start()
 
 
 
     def connect_seed(self, peer_host, peer_port):
         connection = socket.create_connection((peer_host, peer_port))
         self.seed.append(connection)
+        
         self.log(f"Connected to {peer_host}:{peer_port}")
         data = f"STORE-{self.host}:{self.port}"
         connection.sendall(data.encode())
@@ -61,10 +64,11 @@ class Peer:
 
         for conn in self.connected:
             if(conn[2] == connection):
-                addr=conn[1]
+                addr = conn[1]
                 port = conn[0]
                 break
-        while port != 0 and counter < 3:
+        
+        while port != 123456 and counter < 3:
             self.log(f"Sending heartbeat to {port}")
             time.sleep(13)
             try:
@@ -74,11 +78,16 @@ class Peer:
                 
             except Exception as e:
                 counter += 1
-        self.log(f"Connection from {port} closed.")  
+        
+        # self.log(f"Connection from {port} closed.")  
 
         if port !=12345:
+            
             self.log(f"Connection from {port} closed")
             self.connected.remove([port,addr,connection])
+
+            for conn in self.seed:
+                self.send_seed_to_remove_peer(addr,port,conn)
 
             connection.close()
 
@@ -217,16 +226,27 @@ class Peer:
         listen_thread = threading.Thread(target=self.listen)
         listen_thread.start()
 
+    
+    def send_seed_to_remove_peer(self,peer_host,peer_port,connection):
+        data = "REMOVE-" + str(peer_host) + ":" + str(peer_port)
+        connection.sendall(data.encode())
+        
+
+    
     def close_socket(self):
         try:
             for conn in self.connected:
                 conn[2].close()
+            
             for conn in self.seed:
                 conn.close() 
+            
             self.socket.close()
-            print("Socket closed successfully")
+            
+            print("Peer closed successfully")
+        
         except socket.error as e:
-            print(f"Error closing socket: {e}")
+            print(f"Error closing the Peer: {e}")
 
     def log(self, message):
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
