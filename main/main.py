@@ -49,8 +49,6 @@ try:
     for conn in peer4.connected:
         print(conn[0], conn[1], conn[2])
     
-    # for conn in peer1.connected:
-    #     print(conn[0], conn[1], conn[2])    
 
     print(len(peer1.messages))
     for msg in peer4.messages:
