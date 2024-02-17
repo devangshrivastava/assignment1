@@ -1,4 +1,4 @@
-from main.seed.seed import Seed
+from seed.seed import Seed
 from peer.peer import Peer 
 import time
 import random
