@@ -26,6 +26,7 @@ class Peer:
         self.logfile = f"logfile_{self.port}.txt"
         self.peers = set()
         self.messages = []
+        self.messages_to_send=[]
         self.inital_peer_count=0
 
     def connect(self, peer_host, peer_port):
@@ -50,8 +51,8 @@ class Peer:
     def message_check(self,message):
         hash = hashlib.sha256(message.encode()).hexdigest()
         for msg in self.messages:
-            if msg.hash == hash: return False
-        return True
+            if msg.hash == hash: return True
+        return False
 
     def heartbeat(self,connection):
         counter = 0
@@ -103,17 +104,18 @@ class Peer:
                     for peer_string in peer_strings:
                         host, port = peer_string.split(",")
                         self.peers.add((host, int(port)))        
-                if data.startswith("MESSAGE"):
-                    b = self.message_check(data) #false if exi
-                    if b:
+                elif data.startswith("MESSAGE"):
+                    b = self.message_check(data)
+                    if not b:
                         msg = Message(data)
-                        self.messages.append(msg)
                         for conn in self.connected:
                             if(conn[2] == connection):
-                                msg.received_from.append([conn[0], conn[1]]) #port, host,
-                                break
-                        self.send_data(data)
-                        time.sleep(1)
+                                msg.received_from.append([conn[0], conn[1]])
+                                break      
+                        self.messages.append(msg)
+                        # self.send_data(data) # devang 
+                        self.messages_to_send.append(msg)
+                        
                 if data.startswith("STORE"):
                     host_port_str = data.split("-")[1]  
                     host, port = host_port_str.split(":") 
@@ -160,23 +162,25 @@ class Peer:
             
         for conn in self.connected:
             connection = conn[2]
-            if msg != None and conn[0] != msg.received_from[0][0]:
+            
+            if msg is not None and [conn[0], conn[1]] not in msg.received_from :
                 msg.sent_to.append([conn[0], conn[1]]) #port, host,
-            elif msg != None and conn[0] == msg.received_from[0][0]: continue
-            try:
-                connection.sendall(data.encode())
-                peer_address = connection.getpeername()
-                self.log(f"Sent data to {peer_address}: {data}")
-            except socket.error as e:
-                self.log(f"Failed to send data. Error: {e}")
+            # elif msg != None and conn[0] == msg.received_from[0][0]: continue
                 try:
-                    self.connected.remove(conn)
-                except Exception as e:
-                    pass
+                    connection.sendall(data.encode())
+                    peer_address = connection.getpeername()
+                    self.log(f"Sent data to {peer_address}: {data}")
+                except socket.error as e:
+                    self.log(f"Failed to send data. Error: {e}")
+                    try:
+                        self.connected.remove(conn)
+                    except Exception as e:
+                        pass
+
+    
     def handle_client(self, connection, address):
         threading.Thread(target=self.heartbeat, args=(connection,)).start()
-        
-        
+        threading.Thread(target=self.gossip, args=()).start()
         self.log(f"Connection from {address} opened.")
         while True:
             try:
@@ -196,15 +200,15 @@ class Peer:
                     self.connected.append([int(port), host, connection])
                 elif data.startswith("MESSAGE"):
                     b = self.message_check(data)
-                    if b:
-                        # print("True")
+                    if not b: #if not exist then false
                         msg = Message(data)
-                        self.messages.append(msg)
                         for conn in self.connected:
                             if(conn[2] == connection):
                                 msg.received_from.append([conn[0], conn[1]])
-                                break       
-                        self.send_data(data)
+                                break        
+                        self.messages.append(msg)
+                        # self.send_data(data) # devang
+                        self.messages_to_send.append(msg)
                         time.sleep(1)
                 elif data.startswith("HEARTBEAT"):
                     continue
@@ -224,6 +228,30 @@ class Peer:
     def send_seed_to_remove_peer(self,peer_host,peer_port,connection):
         data = "REMOVE-" + str(peer_host) + ":" + str(peer_port)
         connection.sendall(data.encode())
+
+    def gossip(self): # put this in thread of handel client
+        
+
+        for i in range(10):
+            
+
+            data = "MESSAGE-"+str(i)+"-From-"+str(self.host)+":"+str(self.port)
+
+            msg=Message(data)
+            msg.received_from.append([self.host,self.port])
+            self.messages.append(msg)
+            
+            self.messages_to_send.append(msg)
+            
+            for messy in self.messages_to_send:
+                self.send_data(messy.message)
+
+            self.messages_to_send=[] # empty the list
+
+            time.sleep(5)
+
+            
+
         
     def close_socket(self):
         try:

@@ -21,7 +21,7 @@ try:
     time.sleep(1)
     
     peer_list = []
-    for i in range(8000,8008):
+    for i in range(8000,8003):
         peer = Peer("127.0.0.1",i)
         peer.start()
   
@@ -44,71 +44,12 @@ try:
 
         time.sleep(1)
     
-    given_peer = Peer("127.0.0.1",7000)
-    given_peer.start()
+    time.sleep(30)
 
-    time.sleep(13)
     peer_list[0].close_socket()
-    print("Peer 1 closed")
-
-    given_peer.connect(peer_list[1].host, peer_list[1].port)
-
-    time.sleep(1)
-    given_peer.send_data("MESSAGE Hello from 7000")
-    print
-
-
-        
-
-    # peer1 = Peer("127.0.0.1", 8000)
-    # peer1.start()
-    # peer2 = Peer("127.0.0.1", 8001)
-    # peer2.start()
-    # peer3 = Peer("127.0.0.1", 8002)
-    # peer3.start()
-    # peer4 = Peer("127.0.0.1", 8003)
-    # peer4.start()
-
-    # time.sleep(2)
-    # peer1.connect_seed(seed1.host, seed1.port)
-    # time.sleep(1)
-    # # for peer in peer1.peers:
-    #     # peer1.connect(peer[0], peer[1])
-    
-    # peer2.connect_seed(seed1.host, seed1.port)
-    # time.sleep(1)
-    # # for peer in peer2.peers:
-    # #     peer2.connect(peer[0], peer[1])
-    
-    # peer3.connect_seed(seed1.host, seed1.port)
-    # time.sleep(1)
-    # # for peer in peer3.peers:
-    # #     peer3.connect(peer[0], peer[1])
-    
-    # peer4.connect_seed(seed1.host, seed1.port)
-    # time.sleep(1)
-    # for peer in peer4.peers:
-    #     peer4.connect(peer[0], peer[1])
-    
-    seed_list[0].send_data("Hello")
-    time.sleep(2)
-    peer_list[0].send_data("MESSAGE Hello")
-    time.sleep(1)
-    
-    for conn in peer_list[3].connections:
-        print(conn)
-    print(len(peer_list[0].connections))
-
-    for conn in peer_list[3].connected:
-        print(conn[0], conn[1], conn[2])
     
 
-    print(len(peer_list[0].messages))
-    for msg in peer_list[3].messages:
-        print(msg.message)
-        print(msg.sent_to)
-        print(msg.received_from)
-
+    
 except KeyboardInterrupt:
     print("Shutting down...")
     print("Goodbye!")

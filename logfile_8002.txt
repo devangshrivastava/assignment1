@@ -1,88 +1,84 @@
-[2024-02-17 20:24:54] Connected to 127.0.0.1:6002
-[2024-02-17 20:24:54] Listening for connections on 127.0.0.1:8002
-[2024-02-17 20:24:54] Received data from :('127.0.0.1', 6002): PEERS-127.0.0.1,8000-127.0.0.1,8001
-[2024-02-17 20:24:55] Connected to 127.0.0.1:6003
-[2024-02-17 20:24:55] Received data from :('127.0.0.1', 6003): PEERS-127.0.0.1,8000
-[2024-02-17 20:24:56] Connected to 127.0.0.1:6000
-[2024-02-17 20:24:56] Received data from :('127.0.0.1', 6000): PEERS-127.0.0.1,8001
-[2024-02-17 20:24:59] Connected to 127.0.0.1:8001
-[2024-02-17 20:24:59] Sending heartbeat to 8001
-[2024-02-17 20:24:59] Connected to 127.0.0.1:8000
-[2024-02-17 20:24:59] Sending heartbeat to 8000
-[2024-02-17 20:25:05] Accepted connection from ('127.0.0.1', 57050)
-[2024-02-17 20:25:05] Connection from ('127.0.0.1', 57050) opened.
-[2024-02-17 20:25:05] Received data from :123456: STORE-127.0.0.1:8003
-[2024-02-17 20:25:05] data from :8003: STORE-127.0.0.1:8003
-[2024-02-17 20:25:11] Accepted connection from ('127.0.0.1', 57054)
-[2024-02-17 20:25:11] Connection from ('127.0.0.1', 57054) opened.
-[2024-02-17 20:25:11] Received data from :123456: STORE-127.0.0.1:8004
-[2024-02-17 20:25:11] data from :8004: STORE-127.0.0.1:8004
-[2024-02-17 20:25:12] Received data from :('127.0.0.1', 8001): HEARTBEAT
-[2024-02-17 20:25:12] Sending heartbeat to 8001
-[2024-02-17 20:25:12] Received data from :('127.0.0.1', 8000): HEARTBEAT
-[2024-02-17 20:25:12] Sending heartbeat to 8000
-[2024-02-17 20:25:17] Accepted connection from ('127.0.0.1', 57064)
-[2024-02-17 20:25:17] Connection from ('127.0.0.1', 57064) opened.
-[2024-02-17 20:25:17] Received data from :123456: STORE-127.0.0.1:8005
-[2024-02-17 20:25:17] data from :8005: STORE-127.0.0.1:8005
-[2024-02-17 20:25:18] Received data from :8003: HEARTBEAT
-[2024-02-17 20:25:24] Received data from :8004: HEARTBEAT
-[2024-02-17 20:25:25] Received data from :('127.0.0.1', 8001): HEARTBEAT
-[2024-02-17 20:25:25] Sending heartbeat to 8001
-[2024-02-17 20:25:25] Received data from :('127.0.0.1', 8000): HEARTBEAT
-[2024-02-17 20:25:25] Sending heartbeat to 8000
-[2024-02-17 20:25:29] Accepted connection from ('127.0.0.1', 57076)
-[2024-02-17 20:25:29] Connection from ('127.0.0.1', 57076) opened.
-[2024-02-17 20:25:29] Received data from :123456: STORE-127.0.0.1:8007
-[2024-02-17 20:25:29] data from :8007: STORE-127.0.0.1:8007
-[2024-02-17 20:25:30] Received data from :8005: HEARTBEAT
-[2024-02-17 20:25:31] Received data from :8003: HEARTBEAT
-[2024-02-17 20:25:37] Received data from :8004: HEARTBEAT
-[2024-02-17 20:25:38] Received data from :('127.0.0.1', 8001): HEARTBEAT
-[2024-02-17 20:25:38] Received data from :('127.0.0.1', 8000): HEARTBEAT
-[2024-02-17 20:25:38] Sending heartbeat to 8001
-[2024-02-17 20:25:38] Sending heartbeat to 8000
-[2024-02-17 20:25:42] Received data from :8007: HEARTBEAT
-[2024-02-17 20:25:43] Received data from :8005: HEARTBEAT
-[2024-02-17 20:25:43] listening to  8000 closed.
-[2024-02-17 20:25:44] Received data from :8003: HEARTBEAT
-[2024-02-17 20:25:44] Received data from :('127.0.0.1', 6000): Hello
-[2024-02-17 20:25:44] Received data from :8003: MESSAGE Hello from 7000
-[2024-02-17 20:25:44] Received data from :8004: MESSAGE Hello from 7000
-[2024-02-17 20:25:44] Sent data to ('127.0.0.1', 8001): MESSAGE Hello from 7000
-[2024-02-17 20:25:44] Failed to send data. Error: [WinError 10038] An operation was attempted on something that is not a socket
-[2024-02-17 20:25:44] data from :8004: MESSAGE Hello from 7000
-[2024-02-17 20:25:44] Sent data to ('127.0.0.1', 57054): MESSAGE Hello from 7000
-[2024-02-17 20:25:44] Sent data to ('127.0.0.1', 57064): MESSAGE Hello from 7000
-[2024-02-17 20:25:44] Received data from :8005: MESSAGE Hello from 7000
-[2024-02-17 20:25:44] Sent data to ('127.0.0.1', 57076): MESSAGE Hello from 7000
-[2024-02-17 20:25:44] data from :8005: MESSAGE Hello from 7000
-[2024-02-17 20:25:45] data from :8003: MESSAGE Hello from 7000
-[2024-02-17 20:25:50] Received data from :8004: HEARTBEAT
-[2024-02-17 20:25:51] Received data from :('127.0.0.1', 8001): HEARTBEAT
-[2024-02-17 20:25:51] Sending heartbeat to 8001
-[2024-02-17 20:25:51] Sending heartbeat to 8000
-[2024-02-17 20:25:55] Received data from :8007: HEARTBEAT
-[2024-02-17 20:25:56] Received data from :8005: HEARTBEAT
-[2024-02-17 20:25:57] Received data from :8003: HEARTBEAT
-[2024-02-17 20:26:03] Received data from :8004: HEARTBEAT
-[2024-02-17 20:26:04] Received data from :('127.0.0.1', 8001): HEARTBEAT
-[2024-02-17 20:26:04] Sending heartbeat to 8001
-[2024-02-17 20:26:04] Sending heartbeat to 8000
-[2024-02-17 20:26:08] Received data from :8007: HEARTBEAT
-[2024-02-17 20:26:09] Received data from :8005: HEARTBEAT
-[2024-02-17 20:26:10] Received data from :8003: HEARTBEAT
-[2024-02-17 20:26:16] Received data from :8004: HEARTBEAT
-[2024-02-17 20:26:17] Received data from :('127.0.0.1', 8001): HEARTBEAT
-[2024-02-17 20:26:17] Sending heartbeat to 8001
-[2024-02-17 20:26:17] 3 calls completed. 8000 is unfortunately dead :( 
-[2024-02-17 20:26:21] Received data from :8007: HEARTBEAT
-[2024-02-17 20:26:22] Received data from :8005: HEARTBEAT
-[2024-02-17 20:26:23] Received data from :8003: HEARTBEAT
-[2024-02-17 20:26:29] Received data from :8004: HEARTBEAT
-[2024-02-17 20:26:30] Received data from :('127.0.0.1', 8001): HEARTBEAT
-[2024-02-17 20:26:30] Sending heartbeat to 8001
-[2024-02-17 20:26:34] Received data from :8007: HEARTBEAT
-[2024-02-17 20:26:35] Received data from :8005: HEARTBEAT
-[2024-02-17 20:26:36] Received data from :8003: HEARTBEAT
-[2024-02-17 20:26:42] Received data from :8004: HEARTBEAT
+[2024-02-17 22:03:24] Listening for connections on 127.0.0.1:8002
+[2024-02-17 22:03:24] Connected to 127.0.0.1:6002
+[2024-02-17 22:03:24] Connected to 127.0.0.1:6003
+[2024-02-17 22:03:24] Received data from :('127.0.0.1', 6002): PEERS-127.0.0.1,8001
+[2024-02-17 22:03:24] Connected to 127.0.0.1:6001
+[2024-02-17 22:03:24] Received data from :('127.0.0.1', 6003): PEERS-127.0.0.1,8000
+[2024-02-17 22:03:24] Received data from :('127.0.0.1', 6001): PEERS-127.0.0.1,8000-127.0.0.1,8001
+[2024-02-17 22:03:25] Connected to 127.0.0.1:8001
+[2024-02-17 22:03:25] Sending heartbeat to 8001
+[2024-02-17 22:03:25] Connected to 127.0.0.1:8000
+[2024-02-17 22:03:25] Sending heartbeat to 8000
+[2024-02-17 22:03:28] Received data from :('127.0.0.1', 8000): MESSAGE-1-From-127.0.0.1:8000
+[2024-02-17 22:03:30] Received data from :('127.0.0.1', 8001): MESSAGE-0-From-127.0.0.1:8000
+[2024-02-17 22:03:30] Received data from :('127.0.0.1', 8001): MESSAGE-1-From-127.0.0.1:8000
+[2024-02-17 22:03:30] Received data from :('127.0.0.1', 8000): MESSAGE-1-From-127.0.0.1:8000
+[2024-02-17 22:03:30] Received data from :('127.0.0.1', 8001): MESSAGE-1-From-127.0.0.1:8001
+[2024-02-17 22:03:30] Received data from :('127.0.0.1', 8000): MESSAGE-1-From-127.0.0.1:8001
+[2024-02-17 22:03:33] Received data from :('127.0.0.1', 8000): MESSAGE-2-From-127.0.0.1:8000
+[2024-02-17 22:03:35] Received data from :('127.0.0.1', 8001): MESSAGE-2-From-127.0.0.1:8000
+[2024-02-17 22:03:35] Received data from :('127.0.0.1', 8000): MESSAGE-2-From-127.0.0.1:8000
+[2024-02-17 22:03:35] Received data from :('127.0.0.1', 8001): MESSAGE-2-From-127.0.0.1:8001
+[2024-02-17 22:03:35] Received data from :('127.0.0.1', 8000): MESSAGE-2-From-127.0.0.1:8001
+[2024-02-17 22:03:38] Received data from :('127.0.0.1', 8000): MESSAGE-3-From-127.0.0.1:8000
+[2024-02-17 22:03:38] Received data from :('127.0.0.1', 8001): HEARTBEAT
+[2024-02-17 22:03:38] Sending heartbeat to 8001
+[2024-02-17 22:03:38] Received data from :('127.0.0.1', 8000): HEARTBEAT
+[2024-02-17 22:03:38] Sending heartbeat to 8000
+[2024-02-17 22:03:40] Received data from :('127.0.0.1', 8001): MESSAGE-3-From-127.0.0.1:8000
+[2024-02-17 22:03:40] Received data from :('127.0.0.1', 8000): MESSAGE-3-From-127.0.0.1:8000
+[2024-02-17 22:03:40] Received data from :('127.0.0.1', 8001): MESSAGE-3-From-127.0.0.1:8001
+[2024-02-17 22:03:40] Received data from :('127.0.0.1', 8000): MESSAGE-3-From-127.0.0.1:8001
+[2024-02-17 22:03:43] Received data from :('127.0.0.1', 8000): MESSAGE-4-From-127.0.0.1:8000
+[2024-02-17 22:03:45] Received data from :('127.0.0.1', 8001): MESSAGE-4-From-127.0.0.1:8000
+[2024-02-17 22:03:45] Received data from :('127.0.0.1', 8000): MESSAGE-4-From-127.0.0.1:8000
+[2024-02-17 22:03:45] Received data from :('127.0.0.1', 8001): MESSAGE-4-From-127.0.0.1:8001
+[2024-02-17 22:03:45] Received data from :('127.0.0.1', 8000): MESSAGE-4-From-127.0.0.1:8001
+[2024-02-17 22:03:48] Received data from :('127.0.0.1', 8000): MESSAGE-5-From-127.0.0.1:8000
+[2024-02-17 22:03:50] Received data from :('127.0.0.1', 8001): MESSAGE-5-From-127.0.0.1:8000
+[2024-02-17 22:03:50] Received data from :('127.0.0.1', 8000): MESSAGE-5-From-127.0.0.1:8000
+[2024-02-17 22:03:50] Received data from :('127.0.0.1', 8001): MESSAGE-5-From-127.0.0.1:8001
+[2024-02-17 22:03:50] Received data from :('127.0.0.1', 8000): MESSAGE-5-From-127.0.0.1:8001
+[2024-02-17 22:03:51] Received data from :('127.0.0.1', 8001): HEARTBEAT
+[2024-02-17 22:03:51] Received data from :('127.0.0.1', 8000): HEARTBEAT
+[2024-02-17 22:03:51] Sending heartbeat to 8001
+[2024-02-17 22:03:51] Sending heartbeat to 8000
+[2024-02-17 22:03:53] Received data from :('127.0.0.1', 8000): MESSAGE-6-From-127.0.0.1:8000
+[2024-02-17 22:03:55] Received data from :('127.0.0.1', 8001): MESSAGE-6-From-127.0.0.1:8000
+[2024-02-17 22:03:55] Received data from :('127.0.0.1', 8001): MESSAGE-6-From-127.0.0.1:8001
+[2024-02-17 22:03:55] Received data from :('127.0.0.1', 8000): MESSAGE-6-From-127.0.0.1:8000
+[2024-02-17 22:03:55] Received data from :('127.0.0.1', 8000): MESSAGE-6-From-127.0.0.1:8001
+[2024-02-17 22:03:56] listening to  8000 closed.
+[2024-02-17 22:04:04] Received data from :('127.0.0.1', 8001): HEARTBEAT
+[2024-02-17 22:04:04] Sending heartbeat to 8001
+[2024-02-17 22:04:04] Sending heartbeat to 8000
+[2024-02-17 22:04:05] Received data from :('127.0.0.1', 8001): MESSAGE-8-From-127.0.0.1:8001
+[2024-02-17 22:04:10] Received data from :('127.0.0.1', 8001): MESSAGE-9-From-127.0.0.1:8001
+[2024-02-17 22:04:17] Received data from :('127.0.0.1', 8001): HEARTBEAT
+[2024-02-17 22:04:17] Sending heartbeat to 8001
+[2024-02-17 22:04:17] Sending heartbeat to 8000
+[2024-02-17 22:04:30] Received data from :('127.0.0.1', 8001): HEARTBEAT
+[2024-02-17 22:04:30] Sending heartbeat to 8001
+[2024-02-17 22:04:30] 3 calls completed. 8000 is unfortunately dead :( 
+[2024-02-17 22:04:43] Received data from :('127.0.0.1', 8001): HEARTBEAT
+[2024-02-17 22:04:43] Sending heartbeat to 8001
+[2024-02-17 22:04:56] Received data from :('127.0.0.1', 8001): HEARTBEAT
+[2024-02-17 22:04:56] Sending heartbeat to 8001
+[2024-02-17 22:05:09] Received data from :('127.0.0.1', 8001): HEARTBEAT
+[2024-02-17 22:05:09] Sending heartbeat to 8001
+[2024-02-17 22:05:22] Received data from :('127.0.0.1', 8001): HEARTBEAT
+[2024-02-17 22:05:22] Sending heartbeat to 8001
+[2024-02-17 22:05:35] Received data from :('127.0.0.1', 8001): HEARTBEAT
+[2024-02-17 22:05:35] Sending heartbeat to 8001
+[2024-02-17 22:05:48] Received data from :('127.0.0.1', 8001): HEARTBEAT
+[2024-02-17 22:05:48] Sending heartbeat to 8001
+[2024-02-17 22:06:01] Received data from :('127.0.0.1', 8001): HEARTBEAT
+[2024-02-17 22:06:01] Sending heartbeat to 8001
+[2024-02-17 22:06:14] Received data from :('127.0.0.1', 8001): HEARTBEAT
+[2024-02-17 22:06:14] Sending heartbeat to 8001
+[2024-02-17 22:06:27] Received data from :('127.0.0.1', 8001): HEARTBEAT
+[2024-02-17 22:06:27] Sending heartbeat to 8001
+[2024-02-17 22:06:40] Received data from :('127.0.0.1', 8001): HEARTBEAT
+[2024-02-17 22:06:40] Sending heartbeat to 8001
+[2024-02-17 22:06:53] Received data from :('127.0.0.1', 8001): HEARTBEAT
+[2024-02-17 22:06:53] Sending heartbeat to 8001
