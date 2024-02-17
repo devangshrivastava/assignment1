@@ -20,11 +20,11 @@ Running the system:
     Place the seed node information in a file named config_file.py with the following format:
 
 
-seed_info = {
-    "seed_1": ("127.0.0.1", 12345),
-    "seed_2": ("127.0.0.1", 54321),
-    "seed_name": ("host_ip", "host_port)
-}
+    seed_info = {
+        "seed_1": ("127.0.0.1", 12345),
+        "seed_2": ("127.0.0.1", 54321),
+        "seed_name": ("host_ip", "host_port)
+    }
 
 Use code with caution.
 
