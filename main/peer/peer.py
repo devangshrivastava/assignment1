@@ -26,6 +26,7 @@ class Peer:
         self.logfile = f"logfile_{self.port}.txt"
         self.peers = set()
         self.messages = []
+        self.inital_peer_count=0
 
 
     def connect(self, peer_host, peer_port):
@@ -59,30 +60,32 @@ class Peer:
     def heartbeat(self,connection):
         counter = 0
         port = 123456
-
+        addr ="123456"
         for conn in self.connected:
             if(conn[2] == connection):
                 addr = conn[1]
                 port = conn[0]
                 break
-        while counter < 3:
-            self.log(f"Sending heartbeat to {port}")
+        
+        while counter < 3 and connection not in self.seed:
+            if port !=123456: self.log(f"Sending heartbeat to {port}")
             time.sleep(13)
             try:
                 data = "HEARTBEAT"
                 connection.sendall(data.encode())
                 counter = 0
-                
             except Exception as e:
                 counter += 1
         
         # self.log(f"Connection from {port} closed.")  
 
-        if port !=12345:
+        if port !=123456:
             
-            self.log(f"Connection from {port} closed")
-            self.connected.remove([port,addr,connection])
-
+            self.log(f"3 calls completed. {port} is unfortunately dead :( ")
+            try:
+                self.connected.remove([port,addr,connection])
+            except Exception as e:
+                pass
             for conn in self.seed:
                 self.send_seed_to_remove_peer(addr,port,conn)
 

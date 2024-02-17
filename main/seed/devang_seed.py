@@ -62,10 +62,13 @@ class Seed:
                 self.log(f"data from :{address}: {data}")
                 if data.startswith("REMOVE-"):
                     host_port_str = data.split("-")[1]  
-                    host, port = host_port_str.split(":") 
-                    self.connected_peers.remove([host,port])
-                    self.log(f"data from :{address}: {data}")
-                
+                    host, port = host_port_str.split(":")
+                    try:
+                        self.connected_peers.remove([host,port])
+                        self.log(f"data from :{address}: {data}")
+                        print(self.connected_peers)
+                    except Exception as e: 
+                        pass
             except socket.error:
                 break
 
