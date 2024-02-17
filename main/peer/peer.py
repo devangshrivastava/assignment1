@@ -57,18 +57,17 @@ class Peer:
         counter = 0
         port = 123456
 
-
         for conn in self.connected:
             if(conn[2] == connection):
                 port = conn[0]
                 break
-        while port != 0 and counter < 3:
+        while counter < 3:
             self.log(f"Sending heartbeat to {port}")
             time.sleep(13)
             try:
-                counter = 0
                 data = "HEARTBEAT"
                 connection.sendall(data.encode())
+                counter = 0
                 
             except Exception as e:
                 counter += 1
