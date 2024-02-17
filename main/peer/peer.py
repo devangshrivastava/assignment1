@@ -28,7 +28,6 @@ class Peer:
         self.messages = []
         self.inital_peer_count=0
 
-
     def connect(self, peer_host, peer_port):
         if self.inital_peer_count < 4:
             connection = socket.create_connection((peer_host, peer_port))
@@ -38,8 +37,6 @@ class Peer:
             data = f"STORE-{self.host}:{self.port}"
             connection.sendall(data.encode())
             threading.Thread(target=self.listen_other, args=(connection,)).start()
-
-
 
     def connect_seed(self, peer_host, peer_port):
         connection = socket.create_connection((peer_host, peer_port))
@@ -90,12 +87,6 @@ class Peer:
                 self.send_seed_to_remove_peer(addr,port,conn)
 
             connection.close()
-
-
-
-
-
-
 
     def listen_other(self,connection):
         threading.Thread(target=self.heartbeat, args=(connection,)).start()
@@ -226,13 +217,10 @@ class Peer:
         listen_thread = threading.Thread(target=self.listen)
         listen_thread.start()
 
-    
     def send_seed_to_remove_peer(self,peer_host,peer_port,connection):
         data = "REMOVE-" + str(peer_host) + ":" + str(peer_port)
         connection.sendall(data.encode())
         
-
-    
     def close_socket(self):
         try:
             for conn in self.connected:
