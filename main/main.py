@@ -36,26 +36,26 @@ try:
         
         if( len(peer.peers)>=4):
             sample_peer = random.sample(list(peer.peers),4)
-
         else:
             sample_peer = random.sample(list(peer.peers),len(peer.peers))
-
         for p in sample_peer:
-            
             peer.connect(p[0], p[1])
-
         peer_list.append(peer)
 
         time.sleep(1)
-        
+    
+    given_peer = Peer("127.0.0.1",7000)
+    given_peer.start()
 
     time.sleep(13)
     peer_list[0].close_socket()
     print("Peer 1 closed")
 
-    
+    given_peer.connect(peer_list[1].host, peer_list[1].port)
 
-
+    time.sleep(1)
+    given_peer.send_data("MESSAGE Hello from 7000")
+    print
 
 
         

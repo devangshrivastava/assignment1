@@ -1,0 +1,56 @@
+[2024-02-17 20:24:42] Listening for connections on 127.0.0.1:8000
+[2024-02-17 20:24:42] Connected to 127.0.0.1:6002
+[2024-02-17 20:24:42] Received data from :('127.0.0.1', 6002): PEERS
+[2024-02-17 20:24:43] Connected to 127.0.0.1:6003
+[2024-02-17 20:24:43] Received data from :('127.0.0.1', 6003): PEERS
+[2024-02-17 20:24:44] Connected to 127.0.0.1:6001
+[2024-02-17 20:24:44] Received data from :('127.0.0.1', 6001): PEERS
+[2024-02-17 20:24:53] Accepted connection from ('127.0.0.1', 57039)
+[2024-02-17 20:24:53] Connection from ('127.0.0.1', 57039) opened.
+[2024-02-17 20:24:53] Received data from :123456: STORE-127.0.0.1:8001
+[2024-02-17 20:24:53] data from :8001: STORE-127.0.0.1:8001
+[2024-02-17 20:24:59] Accepted connection from ('127.0.0.1', 57044)
+[2024-02-17 20:24:59] Connection from ('127.0.0.1', 57044) opened.
+[2024-02-17 20:24:59] Received data from :123456: STORE-127.0.0.1:8002
+[2024-02-17 20:24:59] data from :8002: STORE-127.0.0.1:8002
+[2024-02-17 20:25:05] Accepted connection from ('127.0.0.1', 57048)
+[2024-02-17 20:25:05] Connection from ('127.0.0.1', 57048) opened.
+[2024-02-17 20:25:05] Received data from :123456: STORE-127.0.0.1:8003
+[2024-02-17 20:25:05] data from :8003: STORE-127.0.0.1:8003
+[2024-02-17 20:25:06] Received data from :8001: HEARTBEAT
+[2024-02-17 20:25:11] Accepted connection from ('127.0.0.1', 57055)
+[2024-02-17 20:25:11] Connection from ('127.0.0.1', 57055) opened.
+[2024-02-17 20:25:11] Received data from :123456: STORE-127.0.0.1:8004
+[2024-02-17 20:25:11] data from :8004: STORE-127.0.0.1:8004
+[2024-02-17 20:25:12] Received data from :8002: HEARTBEAT
+[2024-02-17 20:25:18] Received data from :8003: HEARTBEAT
+[2024-02-17 20:25:19] Received data from :8001: HEARTBEAT
+[2024-02-17 20:25:23] Accepted connection from ('127.0.0.1', 57070)
+[2024-02-17 20:25:23] Connection from ('127.0.0.1', 57070) opened.
+[2024-02-17 20:25:23] Received data from :123456: STORE-127.0.0.1:8006
+[2024-02-17 20:25:23] data from :8006: STORE-127.0.0.1:8006
+[2024-02-17 20:25:24] Received data from :8004: HEARTBEAT
+[2024-02-17 20:25:25] Received data from :8002: HEARTBEAT
+[2024-02-17 20:25:29] Accepted connection from ('127.0.0.1', 57075)
+[2024-02-17 20:25:29] Connection from ('127.0.0.1', 57075) opened.
+[2024-02-17 20:25:29] Received data from :123456: STORE-127.0.0.1:8007
+[2024-02-17 20:25:29] data from :8007: STORE-127.0.0.1:8007
+[2024-02-17 20:25:31] Received data from :8003: HEARTBEAT
+[2024-02-17 20:25:32] Received data from :8001: HEARTBEAT
+[2024-02-17 20:25:36] Received data from :8006: HEARTBEAT
+[2024-02-17 20:25:37] Received data from :8004: HEARTBEAT
+[2024-02-17 20:25:38] Received data from :8002: HEARTBEAT
+[2024-02-17 20:25:42] Received data from :8007: HEARTBEAT
+[2024-02-17 20:25:43] Task over 8002 closed.
+[2024-02-17 20:25:43] Task over 8001 closed.
+[2024-02-17 20:25:43] Task over 8006 closed.
+[2024-02-17 20:25:43] Task over 8003 closed.
+[2024-02-17 20:25:43] Task over 8004 closed.
+[2024-02-17 20:25:43] Task over 8007 closed.
+[2024-02-17 20:25:43] listening to  123456 closed.
+[2024-02-17 20:25:43] listening to  123456 closed.
+[2024-02-17 20:25:43] listening to  123456 closed.
+[2024-02-17 20:25:43] Failed to accept connection. Error: [WinError 10038] An operation was attempted on something that is not a socket
+[2024-02-17 20:25:46] Failed to send data. Error: [WinError 10038] An operation was attempted on something that is not a socket
+[2024-02-17 20:25:46] Failed to send data. Error: [WinError 10038] An operation was attempted on something that is not a socket
+[2024-02-17 20:25:46] Failed to send data. Error: [WinError 10038] An operation was attempted on something that is not a socket

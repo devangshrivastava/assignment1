@@ -50,8 +50,7 @@ class Peer:
     def message_check(self,message):
         hash = hashlib.sha256(message.encode()).hexdigest()
         for msg in self.messages:
-            if msg.hash == hash:
-                return False
+            if msg.hash == hash: return False
         return True
 
     def heartbeat(self,connection):
@@ -104,7 +103,7 @@ class Peer:
                         host, port = peer_string.split(",")
                         self.peers.add((host, int(port)))        
                 if data.startswith("MESSAGE"):
-                    b = self.message_check(data)
+                    b = self.message_check(data) #false if exi
                     if b:
                         msg = Message(data)
                         self.messages.append(msg)
@@ -169,8 +168,10 @@ class Peer:
                 self.log(f"Sent data to {peer_address}: {data}")
             except socket.error as e:
                 self.log(f"Failed to send data. Error: {e}")
-                self.connected.remove(conn)
-    
+                try:
+                    self.connected.remove(conn)
+                except Exception as e:
+                    pass
     def handle_client(self, connection, address):
         threading.Thread(target=self.heartbeat, args=(connection,)).start()
         self.log(f"Connection from {address} opened.")
