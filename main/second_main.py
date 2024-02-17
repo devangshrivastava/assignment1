@@ -58,6 +58,6 @@ for peer in peer4.connected:
     print(peer[0], peer[1], peer[2])
 
 
-time.sleep(40)
+time.sleep(13)
 peer1.close_socket()
 print("Peer 1 closed")

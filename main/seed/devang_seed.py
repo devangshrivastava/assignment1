@@ -67,6 +67,7 @@ class Seed:
                         self.connected_peers.remove([host,port])
                         self.log(f"data from :{address}: {data}")
                         print(self.connected_peers)
+                        self.log(f"new peer list :{str(self.connected_peers)}")
                     except Exception as e: 
                         pass
             except socket.error:
