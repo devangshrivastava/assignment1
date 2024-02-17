@@ -77,24 +77,24 @@ try:
     # for peer in peer4.peers:
     #     peer4.connect(peer[0], peer[1])
     
-    seed_list[0].send_data("Hello")
-    time.sleep(2)
-    peer_list[0].send_data("MESSAGE Hello")
-    time.sleep(1)
+    # seed_list[0].send_data("Hello")
+    # time.sleep(2)
+    # peer_list[0].send_data("MESSAGE Hello")
+    # time.sleep(1)
     
-    for conn in peer_list[3].connections:
-        print(conn)
-    print(len(peer_list[0].connections))
+    # for conn in peer_list[3].connections:
+    #     print(conn)
+    # print(len(peer_list[0].connections))
 
-    for conn in peer_list[3].connected:
-        print(conn[0], conn[1], conn[2])
+    # for conn in peer_list[3].connected:
+    #     print(conn[0], conn[1], conn[2])
     
 
-    print(len(peer_list[0].messages))
-    for msg in peer_list[3].messages:
-        print(msg.message)
-        print(msg.sent_to)
-        print(msg.received_from)
+    # print(len(peer_list[0].messages))
+    # for msg in peer_list[3].messages:
+    #     print(msg.message)
+    #     print(msg.sent_to)
+    #     print(msg.received_from)
 
 except KeyboardInterrupt:
     print("Shutting down...")
