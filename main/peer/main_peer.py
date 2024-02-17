@@ -23,6 +23,7 @@ try:
 
     for conn in given_node.connections:
         print(conn)
+    
 
     input("Press Enter to send data...")
         

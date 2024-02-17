@@ -24,14 +24,13 @@ try:
     for i in range(8000,8005):
         peer = Peer("127.0.0.1",i)
         peer.start()
-        
-        
+  
         sampled_list = random.sample(seed_list, (len(seed_list)//2 + 1))
 
         for i in sampled_list:
             peer.connect_seed(i.host, i.port)
 
-        time.sleep(1)
+        time.sleep(2)
         
         for p in peer.peers:
             peer.connect(p[0], p[1])
@@ -40,6 +39,9 @@ try:
 
         time.sleep(1)
         
+
+    
+
 
 
 
