@@ -29,9 +29,9 @@ try:
 
         for i in sampled_list:
             peer.connect_seed(i.host, i.port)
-            time.sleep(1)
+            # time.sleep(1)
 
-        time.sleep(2)
+        time.sleep(1)
         sample_peer=[]
         
         if( len(peer.peers)>=4):

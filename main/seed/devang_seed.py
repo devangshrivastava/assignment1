@@ -32,7 +32,10 @@ class Seed:
                 self.log(f"Sent data to {peer_address}: {data}")
             except socket.error as e:
                 self.log(f"Failed to send data. Error: {e}")
-                self.connections.remove(connection)
+                try:
+                    self.connections.remove(connection)
+                except Exception as e:
+                    pass
     
     def send_list(self, connection):
         data_list = self.connected_peers
@@ -43,7 +46,10 @@ class Seed:
             self.log(f"Sent data list to {peer_address}: {data_list}")
         except socket.error as e:
             self.log(f"Failed to send data list. Error: {e}")
-            self.connections.remove(connection)
+            try:
+                self.connections.remove(connection)
+            except Exception as e:
+                pass
 
 
     def handle_client(self, connection, address):
@@ -74,7 +80,10 @@ class Seed:
                 break
 
         self.log(f"Connection from {address} closed.")
-        self.connections.remove(connection)
+        try:
+            self.connections.remove(connection)
+        except Exception as e:
+            pass
         connection.close()
 
     def start(self):
