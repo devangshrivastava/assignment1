@@ -36,10 +36,14 @@ try:
         
         if( len(peer.peers)>=4):
             sample_peer = random.sample(list(peer.peers),4)
+
         else:
             sample_peer = random.sample(list(peer.peers),len(peer.peers))
+
         for p in sample_peer:
+            
             peer.connect(p[0], p[1])
+
         peer_list.append(peer)
 
         time.sleep(1)
