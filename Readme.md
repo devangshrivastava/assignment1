@@ -1,5 +1,6 @@
 Peer-to-Peer Messaging System
 Group : Devang Srivastava (B21CS024), Azhar khan (B21CS087)
+Github Link: https://github.com/devangshrivastava/assignment1
 
 This project implements a simple peer-to-peer messaging system using Python. It consists of two main components:
 
@@ -12,7 +13,7 @@ Key features:
     Random peer selection adds dynamism to the network connections.
     Messages are secured using hash-based duplication checks.
     Seed nodes are informed about removed peers to maintain network consistency.
-
+    class based design used. 
 Running the system:
 
     Clone this repository.
@@ -25,6 +26,8 @@ Running the system:
         "seed_2": ("127.0.0.1", 54321),
         "seed_name": ("host_ip", "host_port)
     }
+    
+    run main.py
 
 Use code with caution.
 
