@@ -89,6 +89,7 @@ class Peer:
 
     def listen_other(self,connection):
         threading.Thread(target=self.heartbeat, args=(connection,)).start()
+        
         while True:
             try:
                 data = connection.recv(1024)
@@ -174,6 +175,8 @@ class Peer:
                     pass
     def handle_client(self, connection, address):
         threading.Thread(target=self.heartbeat, args=(connection,)).start()
+        
+        
         self.log(f"Connection from {address} opened.")
         while True:
             try:
