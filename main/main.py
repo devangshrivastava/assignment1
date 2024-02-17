@@ -36,59 +36,23 @@ try:
         
         if( len(peer.peers)>=4):
             sample_peer = random.sample(list(peer.peers),4)
+
         else:
             sample_peer = random.sample(list(peer.peers),len(peer.peers))
+
         for p in sample_peer:
+            
             peer.connect(p[0], p[1])
+
         peer_list.append(peer)
 
         time.sleep(1)
-    
-    given_peer = Peer("127.0.0.1",7000)
-    given_peer.start()
+        
 
     time.sleep(13)
     peer_list[0].close_socket()
     print("Peer 1 closed")
 
-    given_peer.connect(peer_list[1].host, peer_list[1].port)
-
-    time.sleep(1)
-    given_peer.send_data("MESSAGE Hello from 7000")
-    print
-
-
-        
-
-    # peer1 = Peer("127.0.0.1", 8000)
-    # peer1.start()
-    # peer2 = Peer("127.0.0.1", 8001)
-    # peer2.start()
-    # peer3 = Peer("127.0.0.1", 8002)
-    # peer3.start()
-    # peer4 = Peer("127.0.0.1", 8003)
-    # peer4.start()
-
-    # time.sleep(2)
-    # peer1.connect_seed(seed1.host, seed1.port)
-    # time.sleep(1)
-    # # for peer in peer1.peers:
-    #     # peer1.connect(peer[0], peer[1])
-    
-    # peer2.connect_seed(seed1.host, seed1.port)
-    # time.sleep(1)
-    # # for peer in peer2.peers:
-    # #     peer2.connect(peer[0], peer[1])
-    
-    # peer3.connect_seed(seed1.host, seed1.port)
-    # time.sleep(1)
-    # # for peer in peer3.peers:
-    # #     peer3.connect(peer[0], peer[1])
-    
-    # peer4.connect_seed(seed1.host, seed1.port)
-    # time.sleep(1)
-    # for peer in peer4.peers:
-    #     peer4.connect(peer[0], peer[1])
     
     seed_list[0].send_data("Hello")
     time.sleep(2)
