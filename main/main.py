@@ -1,4 +1,4 @@
-from seed.devang_seed import Seed
+from main.seed.seed import Seed
 from peer.peer import Peer 
 import time
 import random
@@ -50,7 +50,7 @@ try:
     
     time.sleep(30)
 
-    peer_list[0].close_socket()
+    peer_list[0].close_socket() # socket is dead
     
 
     
