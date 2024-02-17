@@ -21,7 +21,7 @@ try:
     time.sleep(1)
     
     peer_list = []
-    for i in range(8000,8005):
+    for i in range(8000,8008):
         peer = Peer("127.0.0.1",i)
         peer.start()
   
@@ -29,16 +29,29 @@ try:
 
         for i in sampled_list:
             peer.connect_seed(i.host, i.port)
+            time.sleep(1)
 
         time.sleep(2)
+        sample_peer=[]
         
-        for p in peer.peers:
+        if( len(peer.peers)>=4):
+            sample_peer = random.sample(list(peer.peers),4)
+
+        else:
+            sample_peer = random.sample(list(peer.peers),len(peer.peers))
+
+        for p in sample_peer:
+            
             peer.connect(p[0], p[1])
 
         peer_list.append(peer)
 
         time.sleep(1)
         
+
+    time.sleep(13)
+    peer_list[0].close_socket()
+    print("Peer 1 closed")
 
     
 
